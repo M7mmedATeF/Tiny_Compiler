@@ -1,0 +1,16 @@
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\TinyCompiler.exe
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\TinyCompiler.deps.json
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\TinyCompiler.runtimeconfig.json
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\TinyCompiler.runtimeconfig.dev.json
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\TinyCompiler.dll
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\TinyCompiler.pdb
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.csproj.AssemblyReference.cache
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.Form1.resources
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.csproj.GenerateResource.cache
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.AssemblyInfoInputs.cache
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.AssemblyInfo.cs
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.csproj.CoreCompileInputs.cache
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.dll
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.pdb
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.genruntimeconfig.cache
