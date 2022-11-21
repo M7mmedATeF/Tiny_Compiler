@@ -52,8 +52,15 @@ namespace TinyCompiler
             // Show Errors
             for (int i = 0; i < CompilerControll.scanner.ERRs.Count; i++)
             {
-                dataGridView1.Rows.Add(CompilerControll.scanner.ERRs.ElementAt(i));
+                dataGridView2.Rows.Add(CompilerControll.scanner.ERRs.ElementAt(i));
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)

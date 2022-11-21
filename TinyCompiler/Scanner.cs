@@ -121,13 +121,8 @@ namespace TinyCompiler
                 }
                 else
                 {
-                    while (!(code[i] >= '0' && code[i] <= '9') && !(code[i] >= 'A' && code[i] <= 'z') && !(code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r'))
-                    {
-                        data += code[i];
-                        i++;
-                    }
+                    data += code[i];
                     getToken(data);
-                    i--;
                 }
             }
         }
