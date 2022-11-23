@@ -8,7 +8,7 @@ namespace TinyCompiler
     public enum Token_Class
     {
         INT, STRING, FLOAT, READ, WRITE, REPEAT, UNTIL, IF, ELSEIF, ELSE, THEN, END, CONSTANT,
-        RETURN, ENDL, IDENTIFIER, DO, WHILE_STATEMENT, COMMA, DOT,
+        RETURN, ENDL, IDENTIFIER, DO, WHILE_STATEMENT, COMMA, DOT, STRING_VAL,
         PLUS_OP, MINUS_OP, DEVIDE_OP, MULTIPLY_OP, ASSIGNMENT_OP, INCREMENT, DECREMENT, SIMICOLON,
         LESS_THAN, GREATER_THAN, EQUALS, NOT_EQUALS, AND, OR, LEFT_BRACKET, RIGHT_BRACKET, LEFT_CBRACKET,
         RIGHT_CBRACKET, LEFT_SBRACKET, RIGHT_SBRACKET
@@ -36,6 +36,7 @@ namespace TinyCompiler
             ReservedKeys.Add("read", Token_Class.READ);
             ReservedKeys.Add("write", Token_Class.WRITE);
             ReservedKeys.Add("constant", Token_Class.CONSTANT);
+            ReservedKeys.Add("stringValue", Token_Class.STRING_VAL);
             ReservedKeys.Add("repeat", Token_Class.REPEAT);
             ReservedKeys.Add("until", Token_Class.UNTIL);
             ReservedKeys.Add("if", Token_Class.IF);
@@ -60,10 +61,10 @@ namespace TinyCompiler
             ReservedOP.Add(",", Token_Class.COMMA);
             ReservedOP.Add(".", Token_Class.DOT);
             ReservedOP.Add(":=", Token_Class.ASSIGNMENT_OP);
-            ReservedOP.Add("==", Token_Class.EQUALS);
+            ReservedOP.Add("=", Token_Class.EQUALS);
             ReservedOP.Add("<", Token_Class.LESS_THAN);
             ReservedOP.Add(">", Token_Class.GREATER_THAN);
-            ReservedOP.Add("!=", Token_Class.NOT_EQUALS);
+            ReservedOP.Add("<>", Token_Class.NOT_EQUALS);
             ReservedOP.Add("||", Token_Class.OR);
             ReservedOP.Add("&&", Token_Class.AND);
             ReservedOP.Add("(", Token_Class.LEFT_BRACKET);
@@ -83,10 +84,25 @@ namespace TinyCompiler
                 if (code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r')
                     continue;
 
-                // String [A-Za-z]
-                if (code[i] >= 'A' && code[i] <= 'z')
+                // String ".*"
+                else if (code[i] == '"')
                 {
-                    while (code[i] >= 'A' && code[i] <= 'z')
+                    data += code[i]; // "
+                    i++;
+                    while (code[i] != '"') // .*
+                    {
+                        data += code[i];
+                        i++;
+                    }
+                    data += code[i]; // "
+
+                    getToken(data);
+                }
+
+                // Identifier
+                else if ((code[i] >= 'A' && code[i] <= 'z'))
+                {
+                    while ((code[i] >= 'A' && code[i] <= 'z') || (code[i] >= '0' && code[i] <= '9'))
                     {
                         data += code[i];
                         i++;
@@ -119,9 +135,27 @@ namespace TinyCompiler
                     }
                     i++;
                 }
+
+                // Operators
                 else
                 {
                     data += code[i];
+                    if (data == ":" && code[i + 1] == '=')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if (data == "|" && code[i + 1] == '|')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if (data == "&" && code[i + 1] == '&')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+
                     getToken(data);
                 }
             }
@@ -139,6 +173,9 @@ namespace TinyCompiler
             // Is Reserved Operation ?
             else if (ReservedOP.ContainsKey(LEX))
                 tkn.tok = ReservedOP[LEX];
+            // Is String ?
+            else if (isString(LEX))
+                tkn.tok = ReservedKeys["stringValue"];
             // Is Idenetifier ?
             else if (isIdentifier(LEX))
                 tkn.tok = ReservedKeys["identefier"];
@@ -149,7 +186,7 @@ namespace TinyCompiler
             else
             {
                 isUndefined = true;
-                ERRs.Add(tkn.lex + ": is UNDEFINED");
+                ERRs.Add(tkn.lex + " is UNDEFINED");
             }
 
             // Add to List
@@ -161,6 +198,11 @@ namespace TinyCompiler
         bool isIdentifier(String data)
         {
             Regex rg = new Regex("[A-Za-z]+");
+            return rg.IsMatch(data);
+        }
+        bool isString(String data)
+        {
+            Regex rg = new Regex("\".*\"");
             return rg.IsMatch(data);
         }
         bool isNumber(String data)
