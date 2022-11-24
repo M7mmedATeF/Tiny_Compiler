@@ -7,7 +7,7 @@ namespace TinyCompiler
 {
     public enum Token_Class
     {
-        INT, STRING, FLOAT, READ, WRITE, REPEAT, UNTIL, IF, ELSEIF, ELSE, THEN, END, CONSTANT,
+        INT, STRING, FLOAT, READ, WRITE, REPEAT, UNTIL, IF, ELSEIF, ELSE, THEN, END, CONSTANT,MAIN_FN,
         RETURN, ENDL, IDENTIFIER, DO, WHILE_STATEMENT, COMMA, DOT, STRING_VAL,
         PLUS_OP, MINUS_OP, DEVIDE_OP, MULTIPLY_OP, ASSIGNMENT_OP, INCREMENT, DECREMENT, SIMICOLON,
         LESS_THAN, GREATER_THAN, EQUALS, NOT_EQUALS, AND, OR, LEFT_BRACKET, RIGHT_BRACKET, LEFT_CBRACKET,
@@ -30,6 +30,7 @@ namespace TinyCompiler
         public Scanner()
         {
             // Key Words
+            ReservedKeys.Add("main", Token_Class.MAIN_FN);
             ReservedKeys.Add("int", Token_Class.INT);
             ReservedKeys.Add("string", Token_Class.STRING);
             ReservedKeys.Add("float", Token_Class.FLOAT);
@@ -87,14 +88,28 @@ namespace TinyCompiler
                 // String ".*"
                 else if (code[i] == '"')
                 {
+                    bool gotERR = false;
                     data += code[i]; // "
                     i++;
-                    while (code[i] != '"') // .*
+                    if (i < code.Length)
                     {
-                        data += code[i];
-                        i++;
+                        while (code[i] != '"') // .*
+                        {
+                            data += code[i];
+                            i++;
+                            if (i >= code.Length)
+                            {
+                                gotERR = true;
+                                break;
+                            }
+                        }
                     }
-                    data += code[i]; // "
+                    else
+                    {
+                        gotERR = true;
+                    }
+                    if(!gotERR)
+                        data += code[i]; // "
 
                     getToken(data);
                 }
@@ -106,6 +121,8 @@ namespace TinyCompiler
                     {
                         data += code[i];
                         i++;
+                        if (i >= code.Length)
+                            break;
                     }
 
                     getToken(data);
@@ -119,6 +136,8 @@ namespace TinyCompiler
                     {
                         data += code[i];
                         i++;
+                        if (i >= code.Length)
+                            break;
                     }
 
                     getToken(data);
@@ -132,6 +151,8 @@ namespace TinyCompiler
                     while (code[i] != '*' && code[i + 1] != '/')
                     {
                         i++;
+                        if (i >= code.Length)
+                            break;
                     }
                     i++;
                 }
@@ -140,20 +161,23 @@ namespace TinyCompiler
                 else
                 {
                     data += code[i];
-                    if (data == ":" && code[i + 1] == '=')
+                    if(i+1 != code.Length)
                     {
-                        i++;
-                        data += code[i];
-                    }
-                    else if (data == "|" && code[i + 1] == '|')
-                    {
-                        i++;
-                        data += code[i];
-                    }
-                    else if (data == "&" && code[i + 1] == '&')
-                    {
-                        i++;
-                        data += code[i];
+                        if (data == ":" && code[i + 1] == '=')
+                        {
+                            i++;
+                            data += code[i];
+                        }
+                        else if (data == "|" && code[i + 1] == '|')
+                        {
+                            i++;
+                            data += code[i];
+                        }
+                        else if (data == "&" && code[i + 1] == '&')
+                        {
+                            i++;
+                            data += code[i];
+                        }
                     }
 
                     getToken(data);
@@ -197,7 +221,12 @@ namespace TinyCompiler
         // Helper Functions
         bool isIdentifier(String data)
         {
-            Regex rg = new Regex("[A-Za-z]+");
+            // Handel " => IDENTIFIER ERR
+            if(data[0] == '"')
+            {
+                return false;
+            }
+            Regex rg = new Regex("[A-Za-z]+[A-Za-z0-9]*[_[A-Za-z0-9]+]*");
             return rg.IsMatch(data);
         }
         bool isString(String data)

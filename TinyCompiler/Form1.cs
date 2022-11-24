@@ -52,6 +52,16 @@ namespace TinyCompiler
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             CompilerControll.start(textBox1.Text);
             // Show Tokens
             for (int i = 0; i < CompilerControll.scanner.tokens.Count; i++)
@@ -65,12 +75,12 @@ namespace TinyCompiler
             }
         }
 
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             dataGridView1.Rows.Clear();
