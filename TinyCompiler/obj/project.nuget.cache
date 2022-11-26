@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fj5JX3BA6Nrwo2W+78NixAA7Nw5FnM8Pnuvtp+FjTJv16JaqN+xXkEBphXn/Lg3qlATtc9hAMkI1007YMNAZDw==",
+  "dgSpecHash": "/IYGMqD6gTihB6pmwhkIkmyKYTYfT4iysJoGUMrbzM0Tttd5RdbtsTMjeTGX3IdvuKYva1D3Tfvjw7EFpe8Okw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mohammed Atef\\source\\repos\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Mohammed Atef\\.nuget\\packages\\fontawesome.sharp\\6.1.1\\fontawesome.sharp.6.1.1.nupkg.sha512"
+  ],
   "logs": []
 }

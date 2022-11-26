@@ -7,7 +7,7 @@ namespace TinyCompiler
 {
     public enum Token_Class
     {
-        INT, STRING, FLOAT, READ, WRITE, REPEAT, UNTIL, IF, ELSEIF, ELSE, THEN, END, CONSTANT,MAIN_FN,
+        INT, STRING, FLOAT, READ, WRITE, REPEAT, UNTIL, IF, ELSEIF, ELSE, THEN, END, INTEGER_NUM,FLOAT_NUM,MAIN_FN,
         RETURN, ENDL, IDENTIFIER, DO, WHILE_STATEMENT, COMMA, DOT, STRING_VAL,
         PLUS_OP, MINUS_OP, DEVIDE_OP, MULTIPLY_OP, ASSIGNMENT_OP, INCREMENT, DECREMENT, SIMICOLON,
         LESS_THAN, GREATER_THAN, EQUALS, NOT_EQUALS, AND, OR, LEFT_BRACKET, RIGHT_BRACKET, LEFT_CBRACKET,
@@ -36,7 +36,8 @@ namespace TinyCompiler
             ReservedKeys.Add("float", Token_Class.FLOAT);
             ReservedKeys.Add("read", Token_Class.READ);
             ReservedKeys.Add("write", Token_Class.WRITE);
-            ReservedKeys.Add("constant", Token_Class.CONSTANT);
+            ReservedKeys.Add("integer", Token_Class.INTEGER_NUM);
+            ReservedKeys.Add("float_num", Token_Class.FLOAT_NUM);
             ReservedKeys.Add("stringValue", Token_Class.STRING_VAL);
             ReservedKeys.Add("repeat", Token_Class.REPEAT);
             ReservedKeys.Add("until", Token_Class.UNTIL);
@@ -53,6 +54,7 @@ namespace TinyCompiler
 
             // Operators
             ReservedOP.Add("+", Token_Class.PLUS_OP);
+            ReservedOP.Add("–", Token_Class.MINUS_OP);
             ReservedOP.Add("-", Token_Class.MINUS_OP);
             ReservedOP.Add("/", Token_Class.DEVIDE_OP);
             ReservedOP.Add("*", Token_Class.MULTIPLY_OP);
@@ -129,10 +131,10 @@ namespace TinyCompiler
                     i--;
                 }
 
-                // Number [0-9]
-                else if (code[i] >= '0' && code[i] <= '9')
+                // Number [0-9] | Float Constant
+                else if ((code[i] >= '0' && code[i] <= '9')  || (code[i] == '.' && (code[i+1] >= '0' && code[i + 1] <= '9')))
                 {
-                    while (code[i] >= '0' && code[i] <= '9')
+                    while ((code[i] >= '0' && code[i] <= '9') || code[i] == '.')
                     {
                         data += code[i];
                         i++;
@@ -203,9 +205,12 @@ namespace TinyCompiler
             // Is Idenetifier ?
             else if (isIdentifier(LEX))
                 tkn.tok = ReservedKeys["identefier"];
-            // Is Number ?
+            // Is Float ?
+            else if (isFloat(LEX))
+                tkn.tok = ReservedKeys["float_num"];
+            // Is Integer ?
             else if (isNumber(LEX))
-                tkn.tok = ReservedKeys["constant"];
+                tkn.tok = ReservedKeys["integer"];
             // TODO: Undefined
             else
             {
@@ -226,7 +231,12 @@ namespace TinyCompiler
             {
                 return false;
             }
-            Regex rg = new Regex("[A-Za-z]+[A-Za-z0-9]*[_[A-Za-z0-9]+]*");
+            Regex rg = new Regex("[A-Za-z][A-Za-z0-9]*(_[A-Za-z0-9]+)*");
+            return rg.IsMatch(data);
+        }
+        bool isFloat(String data)
+        {
+            Regex rg = new Regex("[0-9]+\\.[0-9]+");
             return rg.IsMatch(data);
         }
         bool isString(String data)
@@ -236,6 +246,9 @@ namespace TinyCompiler
         }
         bool isNumber(String data)
         {
+            // Handel . ERR (.5 || 1.)
+            if (data[0] == '.' || data[data.Length - 1] == '.')
+                return false;
             Regex rg = new Regex("[0-9]+");
             return rg.IsMatch(data);
         }
