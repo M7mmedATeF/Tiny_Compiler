@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,9 +26,22 @@ namespace TinyCompiler
         private string moveFor = "both";
         private int panelX = 0, panelY = 0;
 
+        // Rounded Borders
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+
         public Form1()
         {
             InitializeComponent();
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
         private void panel1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -55,7 +69,7 @@ namespace TinyCompiler
         }
         private void iconButton4_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
+            richTextBox1.Text = "";
             initiateData();
         }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -145,11 +159,13 @@ namespace TinyCompiler
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
             CompilerControll.scanner.tokens.Clear();
+            CompilerControll.scanner.editorColorizer.Clear();
             CompilerControll.scanner.ERRs.Clear();
         }
         private void RunCode()
         {
-            CompilerControll.start(textBox1.Text);
+            CompilerControll.start(richTextBox1.Text);
+            initializeTextBoxTheme();
             // Show Tokens
             for (int i = 0; i < CompilerControll.scanner.tokens.Count; i++)
             {
@@ -161,17 +177,37 @@ namespace TinyCompiler
                 dataGridView2.Rows.Add(CompilerControll.scanner.ERRs.ElementAt(i));
             }
         }
-        /*private void initializeTextBoxTheme(Token tk)
+        private void initializeTextBoxTheme()
         {
-            if(tk.tok == Token_Class.IDENTIFIER)
+            richTextBox1.Clear();
+            for (int i = 0; i < CompilerControll.scanner.editorColorizer.Count; i++)
             {
-                textBox1.SelectionColor = Color.FromArgb(69, 169, 249);
+                Token tk = CompilerControll.scanner.editorColorizer.ElementAt(i);
+                if (tk.tok == Token_Class.IDENTIFIER)
+                {
+                    richTextBox1.SelectionColor = Color.Wheat;
+                }else if (tk.tok == Token_Class.INT || tk.tok == Token_Class.STRING || tk.tok == Token_Class.FLOAT || tk.tok == Token_Class.MAIN_FN || tk.tok == Token_Class.IF || tk.tok == Token_Class.READ || tk.tok == Token_Class.WRITE || tk.tok == Token_Class.UNTIL || tk.tok == Token_Class.ELSE || tk.tok == Token_Class.ELSEIF || tk.tok == Token_Class.END || tk.tok == Token_Class.ENDL || tk.tok == Token_Class.REPEAT || tk.tok == Token_Class.RETURN || tk.tok == Token_Class.THEN)
+                {
+                    richTextBox1.SelectionColor = Color.LightSkyBlue;
+                }
+                else if (tk.tok == Token_Class.INTEGER_NUM || tk.tok == Token_Class.FLOAT_NUM)
+                {
+                    richTextBox1.SelectionColor = Color.Wheat;
+                }
+                else if (tk.tok == Token_Class.STRING_VAL)
+                {
+                    richTextBox1.SelectionColor = Color.Orange;
+                }
+                else if (tk.tok == Token_Class.COMMENT)
+                {
+                    richTextBox1.SelectionColor = Color.LightGreen;
+                }
+                else
+                {
+                    richTextBox1.SelectionColor = Color.White;
+                }
+                richTextBox1.SelectedText = tk.lex;
             }
-            else
-            {
-                textBox1.SelectionColor = Color.White;
-            }
-            textBox1.SelectedText = tk.lex;
-        }*/
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace TinyCompiler
         RETURN, ENDL, IDENTIFIER, DO, WHILE_STATEMENT, COMMA, DOT, STRING_VAL,
         PLUS_OP, MINUS_OP, DEVIDE_OP, MULTIPLY_OP, ASSIGNMENT_OP, INCREMENT, DECREMENT, SIMICOLON,
         LESS_THAN, GREATER_THAN, EQUALS, NOT_EQUALS, AND, OR, LEFT_BRACKET, RIGHT_BRACKET, LEFT_CBRACKET,
-        RIGHT_CBRACKET, LEFT_SBRACKET, RIGHT_SBRACKET
+        RIGHT_CBRACKET, LEFT_SBRACKET, RIGHT_SBRACKET,COMMENT
     }
 
     public class Token
@@ -21,6 +21,7 @@ namespace TinyCompiler
     }
     public class Scanner
     {
+        public List<Token> editorColorizer = new List<Token>();
         public List<Token> tokens = new List<Token>();
         public List<string> ERRs = new List<string>();
         private Dictionary<string, Token_Class> ReservedKeys = new Dictionary<string, Token_Class>();
@@ -84,9 +85,12 @@ namespace TinyCompiler
             for (int i = 0; i < code.Length; i++)
             {
                 string data = "";
-                if (code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r')
+                if (code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r') {
+                    Token tk = new Token();
+                    tk.lex = "" + code[i];
+                    editorColorizer.Add(tk);
                     continue;
-
+                }
                 // String ".*"
                 else if (code[i] == '"')
                 {
@@ -149,27 +153,57 @@ namespace TinyCompiler
                 // comment
                 else if (code[i] == '/' && code[i+1] == '*')
                 {
+                    data += "/*";
                     i += 2;
                     while (code[i] != '*' && code[i + 1] != '/')
-                    {
-                        i++;
-                        if (i >= code.Length)
-                            break;
-                    }
-                    i++;
-                }
-
-                // Operators
-                else
-                {
-                    while (!(code[i] >= '0' && code[i] <= '9') && !(code[i] >= 'A' && code[i] <= 'z') && !(code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r'))
                     {
                         data += code[i];
                         i++;
                         if (i >= code.Length)
                             break;
                     }
-                    i--;
+                    data += "*/";
+                    Token tk = new Token();
+                    tk.lex = data;
+                    tk.tok = Token_Class.COMMENT;
+                    editorColorizer.Add(tk);
+                    i++;
+                }
+
+                // Operators
+                else
+                {
+                    data += code[i];
+                    if (code[i] == ':' && code[i + 1] == '=')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if(code[i] == '&' && code[i + 1] == '&')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if (code[i] == '|' && code[i + 1] == '|')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if (code[i] == '+' && code[i + 1] == '+')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if (code[i] == '-' && code[i + 1] == '-')
+                    {
+                        i++;
+                        data += code[i];
+                    }
+                    else if (code[i] == '<' && code[i + 1] == '>')
+                    {
+                        i++;
+                        data += code[i];
+                    }
                     getToken(data);
                 }
             }
@@ -207,8 +241,11 @@ namespace TinyCompiler
             }
 
             // Add to List
-            if(!isUndefined)
+            if (!isUndefined)
+            {
+                editorColorizer.Add(tkn);
                 tokens.Add(tkn);
+            }
         }
 
         // Helper Functions

@@ -11,7 +11,6 @@ namespace TinyCompiler
 {
     public partial class Loader : Form
     {
-        bool goNext = false;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (

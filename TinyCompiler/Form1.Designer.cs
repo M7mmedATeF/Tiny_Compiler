@@ -33,7 +33,6 @@ namespace TinyCompiler
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconButton5 = new FontAwesome.Sharp.IconButton();
             this.header = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -42,7 +41,7 @@ namespace TinyCompiler
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.editorPanel = new System.Windows.Forms.Panel();
             this.textPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.helperPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.DataViewer = new System.Windows.Forms.TabControl();
@@ -84,7 +83,7 @@ namespace TinyCompiler
             this.iconButton4.Location = new System.Drawing.Point(0, 0);
             this.iconButton4.Name = "iconButton4";
             this.iconButton4.Size = new System.Drawing.Size(59, 59);
-            this.iconButton4.TabIndex = 3;
+            this.iconButton4.TabIndex = 4;
             this.iconButton4.UseVisualStyleBackColor = false;
             this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
@@ -103,10 +102,10 @@ namespace TinyCompiler
             this.iconButton2.IconColor = System.Drawing.Color.White;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton2.IconSize = 45;
-            this.iconButton2.Location = new System.Drawing.Point(1330, 0);
+            this.iconButton2.Location = new System.Drawing.Point(1395, 0);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(59, 59);
-            this.iconButton2.TabIndex = 1;
+            this.iconButton2.TabIndex = 2;
             this.iconButton2.UseVisualStyleBackColor = false;
             this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
@@ -127,7 +126,7 @@ namespace TinyCompiler
             this.iconButton3.Location = new System.Drawing.Point(65, 0);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(59, 59);
-            this.iconButton3.TabIndex = 2;
+            this.iconButton3.TabIndex = 3;
             this.iconButton3.UseVisualStyleBackColor = false;
             this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
             // 
@@ -153,32 +152,9 @@ namespace TinyCompiler
             this.iconButton1.UseVisualStyleBackColor = false;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
-            // iconButton5
-            // 
-            this.iconButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconButton5.BackColor = System.Drawing.Color.Transparent;
-            this.iconButton5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.iconButton5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconButton5.FlatAppearance.BorderSize = 0;
-            this.iconButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
-            this.iconButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
-            this.iconButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton5.ForeColor = System.Drawing.Color.White;
-            this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            this.iconButton5.IconColor = System.Drawing.Color.White;
-            this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconButton5.IconSize = 45;
-            this.iconButton5.Location = new System.Drawing.Point(1395, 0);
-            this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Size = new System.Drawing.Size(59, 59);
-            this.iconButton5.TabIndex = 4;
-            this.iconButton5.UseVisualStyleBackColor = false;
-            this.iconButton5.Click += new System.EventHandler(this.iconButton5_Click);
-            // 
             // header
             // 
             this.header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(35)))));
-            this.header.Controls.Add(this.iconButton5);
             this.header.Controls.Add(this.iconButton1);
             this.header.Controls.Add(this.iconButton3);
             this.header.Controls.Add(this.iconButton2);
@@ -253,7 +229,7 @@ namespace TinyCompiler
             // 
             // editorPanel
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(32)))), ((int)(((byte)(68)))));
+            this.editorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.editorPanel.Controls.Add(this.textPanel);
             this.editorPanel.Controls.Add(this.helperPanel);
             this.editorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -267,29 +243,28 @@ namespace TinyCompiler
             // textPanel
             // 
             this.textPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(43)))));
-            this.textPanel.Controls.Add(this.textBox1);
+            this.textPanel.Controls.Add(this.richTextBox1);
             this.textPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textPanel.Location = new System.Drawing.Point(0, 0);
             this.textPanel.Name = "textPanel";
+            this.textPanel.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.textPanel.Size = new System.Drawing.Size(1285, 579);
             this.textPanel.TabIndex = 11;
             // 
-            // textBox1
+            // richTextBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(43)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(249)))), ((int)(((byte)(216)))));
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "// Write Your Code Here";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(1285, 579);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(43)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.richTextBox1.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.richTextBox1.Location = new System.Drawing.Point(5, 5);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1280, 574);
+            this.richTextBox1.TabIndex = 5;
+            this.richTextBox1.TabStop = false;
+            this.richTextBox1.Text = "";
             // 
             // helperPanel
             // 
@@ -436,6 +411,7 @@ namespace TinyCompiler
             this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.header.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -443,7 +419,6 @@ namespace TinyCompiler
             this.sidePanel.ResumeLayout(false);
             this.editorPanel.ResumeLayout(false);
             this.textPanel.ResumeLayout(false);
-            this.textPanel.PerformLayout();
             this.helperPanel.ResumeLayout(false);
             this.DataViewer.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -460,7 +435,6 @@ namespace TinyCompiler
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
         private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton5;
         private System.Windows.Forms.Panel header;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel mainPanel;
@@ -469,7 +443,6 @@ namespace TinyCompiler
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel editorPanel;
         private System.Windows.Forms.Panel textPanel;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel helperPanel;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TabControl DataViewer;
@@ -480,6 +453,7 @@ namespace TinyCompiler
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
