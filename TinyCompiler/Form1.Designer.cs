@@ -71,6 +71,7 @@ namespace TinyCompiler
             // 
             this.iconButton4.BackColor = System.Drawing.Color.Transparent;
             this.iconButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.iconButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconButton4.FlatAppearance.BorderSize = 0;
             this.iconButton4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
             this.iconButton4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
@@ -92,6 +93,7 @@ namespace TinyCompiler
             this.iconButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconButton2.BackColor = System.Drawing.Color.Transparent;
             this.iconButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.iconButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconButton2.FlatAppearance.BorderSize = 0;
             this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
             this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
@@ -112,6 +114,7 @@ namespace TinyCompiler
             // 
             this.iconButton3.BackColor = System.Drawing.Color.Transparent;
             this.iconButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.iconButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconButton3.FlatAppearance.BorderSize = 0;
             this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
             this.iconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
@@ -133,6 +136,7 @@ namespace TinyCompiler
             this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconButton1.BackColor = System.Drawing.Color.Transparent;
             this.iconButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconButton1.FlatAppearance.BorderSize = 0;
             this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
             this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
@@ -154,6 +158,7 @@ namespace TinyCompiler
             this.iconButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconButton5.BackColor = System.Drawing.Color.Transparent;
             this.iconButton5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.iconButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconButton5.FlatAppearance.BorderSize = 0;
             this.iconButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
             this.iconButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(53)))), ((int)(((byte)(58)))));
@@ -178,6 +183,7 @@ namespace TinyCompiler
             this.header.Controls.Add(this.iconButton3);
             this.header.Controls.Add(this.iconButton2);
             this.header.Controls.Add(this.iconButton4);
+            this.header.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.header.Dock = System.Windows.Forms.DockStyle.Top;
             this.header.Location = new System.Drawing.Point(0, 0);
             this.header.Name = "header";

@@ -59,5 +59,15 @@ namespace TinyCompiler.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LOADER_01 {
+            get {
+                object obj = ResourceManager.GetObject("LOADER-01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

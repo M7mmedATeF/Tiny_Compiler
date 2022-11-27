@@ -17,3 +17,4 @@ C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcorea
 C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.Properties.Resources.resources
 C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\bin\Debug\netcoreapp3.1\FontAwesome.Sharp.dll
 C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.csproj.CopyComplete
+C:\Users\Mohammed Atef\source\repos\TinyCompiler\TinyCompiler\obj\Debug\netcoreapp3.1\TinyCompiler.Loader.resources

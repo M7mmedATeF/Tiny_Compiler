@@ -42,7 +42,7 @@ namespace TinyCompiler
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
         private void iconButton2_Click(object sender, EventArgs e)
         {

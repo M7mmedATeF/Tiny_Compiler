@@ -162,26 +162,14 @@ namespace TinyCompiler
                 // Operators
                 else
                 {
-                    data += code[i];
-                    if(i+1 != code.Length)
+                    while (!(code[i] >= '0' && code[i] <= '9') && !(code[i] >= 'A' && code[i] <= 'z') && !(code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r'))
                     {
-                        if (data == ":" && code[i + 1] == '=')
-                        {
-                            i++;
-                            data += code[i];
-                        }
-                        else if (data == "|" && code[i + 1] == '|')
-                        {
-                            i++;
-                            data += code[i];
-                        }
-                        else if (data == "&" && code[i + 1] == '&')
-                        {
-                            i++;
-                            data += code[i];
-                        }
+                        data += code[i];
+                        i++;
+                        if (i >= code.Length)
+                            break;
                     }
-
+                    i--;
                     getToken(data);
                 }
             }
