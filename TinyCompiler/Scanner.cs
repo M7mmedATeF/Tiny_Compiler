@@ -11,7 +11,9 @@ namespace TinyCompiler
         RETURN, ENDL, IDENTIFIER, DO, WHILE_STATEMENT, COMMA, DOT, STRING_VAL,
         PLUS_OP, MINUS_OP, DEVIDE_OP, MULTIPLY_OP, ASSIGNMENT_OP, INCREMENT, DECREMENT, SIMICOLON,
         LESS_THAN, GREATER_THAN, EQUALS, NOT_EQUALS, AND, OR, LEFT_BRACKET, RIGHT_BRACKET, LEFT_CBRACKET,
-        RIGHT_CBRACKET, LEFT_SBRACKET, RIGHT_SBRACKET,COMMENT
+        RIGHT_CBRACKET, LEFT_SBRACKET, RIGHT_SBRACKET,
+        // Advenced GUI
+        COMMENT,ERR
     }
 
     public class Token
@@ -21,9 +23,9 @@ namespace TinyCompiler
     }
     public class Scanner
     {
+        public Error errHandel = new Error();
         public List<Token> editorColorizer = new List<Token>();
         public List<Token> tokens = new List<Token>();
-        public List<string> ERRs = new List<string>();
         private Dictionary<string, Token_Class> ReservedKeys = new Dictionary<string, Token_Class>();
         private Dictionary<string, Token_Class> ReservedOP = new Dictionary<string, Token_Class>();
 
@@ -85,12 +87,14 @@ namespace TinyCompiler
             for (int i = 0; i < code.Length; i++)
             {
                 string data = "";
+                // Spacing 
                 if (code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r') {
                     Token tk = new Token();
                     tk.lex = "" + code[i];
                     editorColorizer.Add(tk);
                     continue;
                 }
+                
                 // String ".*"
                 else if (code[i] == '"')
                 {
@@ -206,6 +210,12 @@ namespace TinyCompiler
                     }
                     getToken(data);
                 }
+
+                // Know if The End Of Code
+                if (i >= code.Length - 1)
+                {
+                    errHandel.endOfCode();
+                }
             }
         }
 
@@ -220,7 +230,13 @@ namespace TinyCompiler
                 tkn.tok = ReservedKeys[LEX];
             // Is Reserved Operation ?
             else if (ReservedOP.ContainsKey(LEX))
+            {
                 tkn.tok = ReservedOP[LEX];
+                if(LEX == "(" || LEX == ")" || LEX == "[" || LEX == "]" || LEX == "{" || LEX == "}")
+                {
+                    errHandel.bracketBalance(LEX[0]);
+                }
+            }
             // Is String ?
             else if (isString(LEX))
                 tkn.tok = ReservedKeys["stringValue"];
@@ -237,15 +253,17 @@ namespace TinyCompiler
             else
             {
                 isUndefined = true;
-                ERRs.Add(tkn.lex + " is UNDEFINED");
+                errHandel.getErr(LEX);
+                tkn.tok = Token_Class.ERR;
             }
 
             // Add to List
             if (!isUndefined)
             {
-                editorColorizer.Add(tkn);
                 tokens.Add(tkn);
             }
+
+            editorColorizer.Add(tkn);
         }
 
         // Helper Functions

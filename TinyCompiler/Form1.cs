@@ -160,8 +160,14 @@ namespace TinyCompiler
             dataGridView2.Rows.Clear();
             CompilerControll.scanner.tokens.Clear();
             CompilerControll.scanner.editorColorizer.Clear();
-            CompilerControll.scanner.ERRs.Clear();
+            CompilerControll.scanner.errHandel.ERRs.Clear();
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void RunCode()
         {
             CompilerControll.start(richTextBox1.Text);
@@ -172,9 +178,9 @@ namespace TinyCompiler
                 dataGridView1.Rows.Add(CompilerControll.scanner.tokens.ElementAt(i).lex, CompilerControll.scanner.tokens.ElementAt(i).tok);
             }
             // Show Errors
-            for (int i = 0; i < CompilerControll.scanner.ERRs.Count; i++)
+            for (int i = 0; i < CompilerControll.scanner.errHandel.ERRs.Count; i++)
             {
-                dataGridView2.Rows.Add(CompilerControll.scanner.ERRs.ElementAt(i));
+                dataGridView2.Rows.Add(CompilerControll.scanner.errHandel.ERRs.ElementAt(i));
             }
         }
         private void initializeTextBoxTheme()
@@ -201,6 +207,9 @@ namespace TinyCompiler
                 else if (tk.tok == Token_Class.COMMENT)
                 {
                     richTextBox1.SelectionColor = Color.LightGreen;
+                }else if (tk.tok == Token_Class.ERR)
+                {
+                    richTextBox1.SelectionColor = Color.PaleVioletRed;
                 }
                 else
                 {
