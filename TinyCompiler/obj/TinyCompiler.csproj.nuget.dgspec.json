@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mohammed Atef\\source\\repos\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj": {}
+    "M:\\University\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mohammed Atef\\source\\repos\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj": {
+    "M:\\University\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mohammed Atef\\source\\repos\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj",
+        "projectUniqueName": "M:\\University\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj",
         "projectName": "TinyCompiler",
-        "projectPath": "C:\\Users\\Mohammed Atef\\source\\repos\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj",
+        "projectPath": "M:\\University\\TinyCompiler\\TinyCompiler\\TinyCompiler.csproj",
         "packagesPath": "C:\\Users\\Mohammed Atef\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mohammed Atef\\source\\repos\\TinyCompiler\\TinyCompiler\\obj\\",
+        "outputPath": "M:\\University\\TinyCompiler\\TinyCompiler\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mohammed Atef\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -23,8 +23,10 @@ namespace TinyCompiler
     }
     public class Scanner
     {
-        public Error errHandel = new Error();
+        // ADVANCED GUI
         public List<Token> editorColorizer = new List<Token>();
+
+        public Error errHandel = new Error();
         public List<Token> tokens = new List<Token>();
         private Dictionary<string, Token_Class> ReservedKeys = new Dictionary<string, Token_Class>();
         private Dictionary<string, Token_Class> ReservedOP = new Dictionary<string, Token_Class>();
@@ -89,9 +91,11 @@ namespace TinyCompiler
                 string data = "";
                 // Spacing 
                 if (code[i] == ' ' || code[i] == '\n' || code[i] == '\t' || code[i] == '\r') {
+                    // Advanced GUI
                     Token tk = new Token();
                     tk.lex = "" + code[i];
                     editorColorizer.Add(tk);
+
                     continue;
                 }
                 
@@ -118,7 +122,7 @@ namespace TinyCompiler
                     {
                         gotERR = true;
                     }
-                    if(!gotERR)
+                    if(!gotERR) // "sadasdasdsadasd
                         data += code[i]; // "
 
                     getToken(data);
@@ -140,9 +144,9 @@ namespace TinyCompiler
                 }
 
                 // Number [0-9] | Float Constant
-                else if ((code[i] >= '0' && code[i] <= '9')  || (code[i] == '.' && (code[i+1] >= '0' && code[i + 1] <= '9')))
+                else if ((code[i] >= '0' && code[i] <= '9')  || (code[i] == '.' && (code[i+1] >= '0' && code[i + 1] <= '9'))) // .5
                 {
-                    while ((code[i] >= '0' && code[i] <= '9') || code[i] == '.')
+                    while ((code[i] >= '0' && code[i] <= '9') || code[i] == '.') // TODO: handel 2a error
                     {
                         data += code[i];
                         i++;
@@ -167,10 +171,13 @@ namespace TinyCompiler
                             break;
                     }
                     data += "*/";
+
+                    // Advanced GUI
                     Token tk = new Token();
                     tk.lex = data;
                     tk.tok = Token_Class.COMMENT;
                     editorColorizer.Add(tk);
+
                     i++;
                 }
 
@@ -203,7 +210,7 @@ namespace TinyCompiler
                         i++;
                         data += code[i];
                     }
-                    else if (code[i] == '<' && code[i + 1] == '>')
+                    else if (code[i] == '<' && code[i + 1] == '>') // <>
                     {
                         i++;
                         data += code[i];

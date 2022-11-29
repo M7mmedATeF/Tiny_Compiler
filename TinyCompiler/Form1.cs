@@ -159,6 +159,7 @@ namespace TinyCompiler
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
             CompilerControll.scanner.tokens.Clear();
+            CompilerControll.scanner.errHandel.ERRs.Clear();
             CompilerControll.scanner.editorColorizer.Clear();
             CompilerControll.scanner.errHandel.ERRs.Clear();
         }
@@ -171,12 +172,16 @@ namespace TinyCompiler
         private void RunCode()
         {
             CompilerControll.start(richTextBox1.Text);
+
+            // Advanced GUI
             initializeTextBoxTheme();
+
             // Show Tokens
             for (int i = 0; i < CompilerControll.scanner.tokens.Count; i++)
             {
                 dataGridView1.Rows.Add(CompilerControll.scanner.tokens.ElementAt(i).lex, CompilerControll.scanner.tokens.ElementAt(i).tok);
             }
+
             // Show Errors
             for (int i = 0; i < CompilerControll.scanner.errHandel.ERRs.Count; i++)
             {

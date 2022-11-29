@@ -17,7 +17,9 @@ namespace TinyCompiler
             }
         }
 
+
         // Bracket Errors Handeler
+        // (
         public bool bracketBalance(char bracket)
         {
             
